@@ -23,7 +23,7 @@ export const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link" activeClassName="active">
+                <NavLink to="/" className="nav-link" activeclassname="active">
                   Activos
                 </NavLink>
               </li>
@@ -31,7 +31,7 @@ export const Header = () => {
                 <NavLink
                   to="/usuarios"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   Usuarios
                 </NavLink>
@@ -40,7 +40,7 @@ export const Header = () => {
                 <NavLink
                   to="/marcas"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   Marcas
                 </NavLink>
@@ -49,7 +49,7 @@ export const Header = () => {
                 <NavLink
                   to="/estados"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   Estados
                 </NavLink>
@@ -58,7 +58,7 @@ export const Header = () => {
                 <NavLink
                   to="/tipos"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   Tipos
                 </NavLink>
