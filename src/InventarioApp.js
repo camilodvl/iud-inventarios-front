@@ -6,6 +6,9 @@ import { UsuarioMain } from "./components/main/usuario/UsuarioMain";
 import { MarcaMain } from "./components/main/marca/MarcaMain";
 import { TipoMain } from "./components/main/tipo/TipoMain";
 import { EstadoMain } from "./components/main/estado/EstadoMain";
+import './index.css'
+import { UsuarioUpdateForm } from "./components/main/usuario/UsuarioUpdateForm";
+
 
 export const InventarioApp = () => {
   return (
@@ -14,7 +17,8 @@ export const InventarioApp = () => {
       <Header />
         <Routes>
           <Route path='/' element={<Main/>}/>
-          <Route path='/usuarios' element={<UsuarioMain/>}/>
+          <Route path='/usuarios' element={<UsuarioMain/>}/> 
+          <Route path ='/usuarios/editar/:id' element={<UsuarioUpdateForm/>}/>
           <Route path='/marcas' element={<MarcaMain/>}/>
           <Route path='/estados' element={<EstadoMain/>}/>
           <Route path='/tipos' element={<TipoMain/>}/>

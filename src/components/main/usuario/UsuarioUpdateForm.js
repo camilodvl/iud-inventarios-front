@@ -1,14 +1,15 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router-dom";
+import { getUsuarioId } from "../../../services/usuarioService";
+import { useEffect, useState } from "react";
 
-export const UsuarioForm = ({handledSubmint, handledOnChange}) => {
+export const UsuarioUpdateForm = () => {
+  const { id } = useParams();
+  console.log(id);
+
   return (
-      
-    <div>
-    
-        <form
-        onSubmit={(e) => handledSubmint(e)}
-        className="m-3 border border-primary p-1 rounded border-opacity-25"
-      >
+    <div className="container">
+      <form className="m-3 border border-primary p-1 rounded border-opacity-25">
         <div className="d-flex justify-content-between">
           <div className="form-group">
             <label>Nombre: </label>
@@ -18,8 +19,6 @@ export const UsuarioForm = ({handledSubmint, handledOnChange}) => {
               name="nombre"
               aria-describedby="nombre"
               placeholder="Nombre"
-              onChange={(e) => handledOnChange(e)}
-           
             />
           </div>
           <div className="form-group">
@@ -30,19 +29,12 @@ export const UsuarioForm = ({handledSubmint, handledOnChange}) => {
               name="email"
               aria-describedby="emailHelp"
               placeholder="Enter email"
-              onChange={(e) => handledOnChange(e)}
-          
             />
           </div>
 
           <div className="form-group">
             <label>Status: </label>
-            <select
-              required
-              className="form-select"
-              name="estado"
-              onChange={(e) => handledOnChange(e)}
-            >
+            <select required className="form-select" name="estado">
               <option value="" defaultValue hidden>
                 Seleccione
               </option>
@@ -54,5 +46,5 @@ export const UsuarioForm = ({handledSubmint, handledOnChange}) => {
         <button className="btn btn-primary btn-sm m-2">Registrar</button>
       </form>
     </div>
-  )
-}
+  );
+};
