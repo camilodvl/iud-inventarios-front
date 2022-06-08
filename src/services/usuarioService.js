@@ -23,10 +23,11 @@ export const deleteUsuario = (datas) =>{
     return resp;
 }
 
-export const getUsuarioId = (datas, id) =>{
-    const resp = axiosInstance.delete('usuarios', {
-        data:{id:datas}
+export const getUsuarioId = (id) =>{
+    const resp = axiosInstance.get(`usuarios/${id}`, {
+        headers: {
+            'Content-type': 'application/json'
+        }
     });
-    console.log(datas)
     return resp;
 }

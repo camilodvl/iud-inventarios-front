@@ -3,9 +3,35 @@ import { useParams } from "react-router-dom";
 import { getUsuarioId } from "../../../services/usuarioService";
 import { useEffect, useState } from "react";
 
+
 export const UsuarioUpdateForm = () => {
-  const { id } = useParams();
-  console.log(id);
+  const { id="" } = useParams();
+  const [inventario, setInventario]=useState({});
+
+  const {nombre="", email="", estado="Activo"}=inventario;
+  
+  const getInventario = async () =>{
+
+      const {data} = await getUsuarioId(id);
+      console.log(data);
+      setInventario(data)
+      console.log(inventario)
+    try {
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getInventario();
+  }, [id]);
+
+  const handledOnChange =({target})=>{
+    const {name, value} = target;
+    setInventario({...inventario, [name]: value})
+  }
+
 
   return (
     <div className="container">
@@ -19,7 +45,9 @@ export const UsuarioUpdateForm = () => {
               name="nombre"
               aria-describedby="nombre"
               placeholder="Nombre"
-            />
+              value={nombre}
+              onChange={(e) => handledOnChange(e)}
+/>
           </div>
           <div className="form-group">
             <label>Email: </label>
@@ -29,6 +57,8 @@ export const UsuarioUpdateForm = () => {
               name="email"
               aria-describedby="emailHelp"
               placeholder="Enter email"
+              value={email}
+              onChange={(e) => handledOnChange(e)}
             />
           </div>
 
@@ -43,7 +73,7 @@ export const UsuarioUpdateForm = () => {
             </select>
           </div>
         </div>
-        <button className="btn btn-primary btn-sm m-2">Registrar</button>
+        <button className="btn btn-primary btn-sm m-2">Actualizar</button>
       </form>
     </div>
   );

@@ -38,14 +38,14 @@ export const UsuarioMain = () => {
 
   useEffect(() => {
     listarUsuarios();
-  }, [usuarios]);
+  }, [usuario]);
 
   return (
-    <>
+    <div className="container-fluid mt-3 mb-2">
       <UsuarioForm handledSubmint={handledSubmint} handledOnChange={handledOnChange}/>
       <UsuarioList usuarios={usuarios} deleteUsuario={deleteUsuario} listarUsuarios={listarUsuarios}/>
       
-      
-    </>
+    </div>
+  
   );
 };
