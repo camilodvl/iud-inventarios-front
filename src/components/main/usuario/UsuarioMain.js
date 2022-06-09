@@ -12,7 +12,7 @@ import { UsuarioUpdateForm } from "./UsuarioUpdateForm";
 export const UsuarioMain = () => {
   const [usuarios, setUsuarios] = useState([]);//Lista con la que luego se pintaran los usuarios obtenidos de la bd
   const [usuario, setUsuario] = useState({});//objeto para enviar al metodo post
-  const [openModal, setOpenModal]=useState(false);
+  const [controlUsuario, setOpenModal]=useState(0);
 
   const handledOnChange = (e) => {
     setUsuario({ ...usuario, [e.target.name]: e.target.value });
@@ -23,7 +23,7 @@ export const UsuarioMain = () => {
   const handledSubmint = (e) => {
     e.preventDefault();
     postUsuarios(usuario);
-    listarUsuarios();
+    setOpenModal(controlUsuario+1);
   };
 
   const listarUsuarios = async () => {
@@ -38,7 +38,7 @@ export const UsuarioMain = () => {
 
   useEffect(() => {
     listarUsuarios();
-  }, [usuario]);
+  }, [controlUsuario]);
 
   return (
     <div className="container-fluid mt-3 mb-2">

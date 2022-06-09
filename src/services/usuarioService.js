@@ -30,4 +30,16 @@ export const getUsuarioId = (id) =>{
         }
     });
     return resp;
+
+
+}
+
+export const updateUsuario = (data) =>{
+    console.log(`servicio ${data}`)
+    const resp = axiosInstance.put('usuarios',data, {
+        headers:{
+            'Content-type': 'application/json'
+        }
+    });
+    return resp
 }

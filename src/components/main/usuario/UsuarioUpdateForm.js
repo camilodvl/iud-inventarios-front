@@ -1,21 +1,20 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getUsuarioId } from "../../../services/usuarioService";
+import { getUsuarioId, updateUsuario } from "../../../services/usuarioService";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 
 export const UsuarioUpdateForm = () => {
   const { id="" } = useParams();
-  const [inventario, setInventario]=useState({});
+  const [usuario, setUsuario]=useState({});
 
-  const {nombre="", email="", estado="Activo"}=inventario;
+  const {nombre="", email="", estado="Activo"}=usuario;
   
-  const getInventario = async () =>{
+  const getUsuario = async () =>{
 
       const {data} = await getUsuarioId(id);
-      console.log(data);
-      setInventario(data)
-      console.log(inventario)
+      setUsuario(data)
     try {
       
     } catch (error) {
@@ -24,18 +23,37 @@ export const UsuarioUpdateForm = () => {
   }
 
   useEffect(() => {
-    getInventario();
+    getUsuario();
   }, [id]);
 
   const handledOnChange =({target})=>{
     const {name, value} = target;
-    setInventario({...inventario, [name]: value})
+    setUsuario({...usuario, [name]: value})
+    console.log(usuario)
+  }
+
+  const sumitFuncion =  (e) =>{
+    try {
+      e.preventDefault();
+      const usuarioInsertar ={id: usuario._id, 
+      nombre: usuario.nombre,
+      email: usuario.email,
+      estado: usuario.estado
+    }
+    console.log(usuarioInsertar)
+
+      updateUsuario(usuarioInsertar);
+    } catch (error) {
+     console.log(error) 
+    }
+    
   }
 
 
   return (
     <div className="container">
-      <form className="m-3 border border-primary p-1 rounded border-opacity-25">
+      <form className="m-3 border border-primary p-1 rounded border-opacity-25"
+      onSubmit={(e)=>sumitFuncion(e)}>
         <div className="d-flex justify-content-between">
           <div className="form-group">
             <label>Nombre: </label>
@@ -64,7 +82,7 @@ export const UsuarioUpdateForm = () => {
 
           <div className="form-group">
             <label>Status: </label>
-            <select required className="form-select" name="estado">
+            <select required className="form-select" name="estado" value={estado} onChange={(e) => handledOnChange(e)}>
               <option value="" defaultValue hidden>
                 Seleccione
               </option>
