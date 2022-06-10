@@ -1,18 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getMarcaId, updateMarca } from "../../../services/marcaService";
+import { getEstadoEquipoId, updateEstadoEquipo } from "../../../services/estadoService";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-export const MarcaUpdateForm = () => {
+export const EstadoEquipoUpdateForm = () => {
   const { id = "" } = useParams();
-  const [marca, setMarca] = useState({});
+  const [estadoEquipo, setEstadoEquipo] = useState({});
 
-  const { nombre = "", estado = "Activo" } = marca;
+  const { nombre = "", estado = "Activo" } = estadoEquipo;
 
-  const getMarca = async () => {
-    const { data } = await getMarcaId(id);
-    setMarca(data);
+  const getEstadoEquipo = async () => {
+    const { data } = await getEstadoEquipoId(id);
+    setEstadoEquipo(data);
     try {
     } catch (error) {
       console.log(error);
@@ -20,27 +20,27 @@ export const MarcaUpdateForm = () => {
   };
 
   useEffect(() => {
-    getMarca();
+    getEstadoEquipo();
   }, [id]);
 
   const handledOnChange = ({ target }) => {
     const { name, value } = target;
-    setMarca({ ...marca, [name]: value });
+    setEstadoEquipo({ ...estadoEquipo, [name]: value });
   };
 
   const submitFunction = (e) => {
     try {
       e.preventDefault();
-      const MarcaInsertar = {
-        id: marca._id,
-        nombre: marca.nombre,
-        estado: marca.estado,
+      const estadoEquipoInsertar = {
+        id: estadoEquipo._id,
+        nombre: estadoEquipo.nombre,
+        estado: estadoEquipo.estado,
       };
 
-      updateMarca(MarcaInsertar);
+      updateEstadoEquipo(estadoEquipoInsertar);
       Swal.fire(
-        "Marca actualizado",
-        ` Nombre: ${marca.nombre}`,
+        "Estadi actualizado",
+        ` Nombre: ${estadoEquipo.nombre}`,
         "success"
       );
     } catch (error) {
