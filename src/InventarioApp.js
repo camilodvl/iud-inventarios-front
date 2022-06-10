@@ -12,6 +12,7 @@ import { Main } from "./components/main/inventario/InventarioMain";
 import { MarcaUpdateForm } from "./components/main/marca/MarcaUpdateForm";
 import { EstadoEquipoUpdateForm } from "./components/main/estado/EstadoEquipoUpdateForm";
 import { TipoUpdateForm } from "./components/main/tipo/TipoUpdateForm";
+import { InventarioNewForm } from "./components/main/inventario/InventarioNewForm";
 
 
 export const InventarioApp = () => {
@@ -21,6 +22,7 @@ export const InventarioApp = () => {
       <Header />
         <Routes>
           <Route path='/' element={<Main/>}/>
+          <Route path='/inventarionew' element={<InventarioNewForm/>}/>
           <Route path='/usuarios' element={<UsuarioMain/>}/> 
           <Route path ='/usuarios/editar/:id' element={<UsuarioUpdateForm/>}/>
           <Route path='/marcas' element={<MarcaMain/>}/>
