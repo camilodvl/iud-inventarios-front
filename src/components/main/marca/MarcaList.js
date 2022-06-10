@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const UsuarioList = ({ usuarios, deleteUsuario, listarUsuarios }) => {
+export const MarcaList = ({ marcas, deleteMarca, listarMarca }) => {
   return (
     <div>
       <table className="table m-2 mt-5">
@@ -9,7 +9,6 @@ export const UsuarioList = ({ usuarios, deleteUsuario, listarUsuarios }) => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Correo</th>
             <th scope="col">Estado</th>
             <th scope="col">Fecha Creacion</th>
             <th scope="col">Fecha Actualizacion</th>
@@ -18,19 +17,18 @@ export const UsuarioList = ({ usuarios, deleteUsuario, listarUsuarios }) => {
           </tr>
         </thead>
         <tbody>
-          {usuarios.map((usuario) => {
+          {marcas.map((marca) => {
             return (
-              <tr key={usuario._id}>
+              <tr key={marca._id}>
                 <th scope="row">1</th>
-                <td>{usuario.nombre}</td>
-                <td>{usuario.email}</td>
-                <td>{usuario.estado}</td>
-                <td>{usuario.fechaCreacion}</td>
-                <td>{usuario.fechaActualizacion}</td>
+                <td>{marca.nombre}</td>
+                <td>{marca.estado}</td>
+                <td>{marca.fechaCreacion}</td>
+                <td>{marca.fechaActualizacion}</td>
 
                 <td>
                   <NavLink
-                    to={`editar/${usuario._id}`}
+                    to={`editar/${marca._id}`}
                     className="btn btn-info"
                   >
                     Editar
@@ -39,8 +37,8 @@ export const UsuarioList = ({ usuarios, deleteUsuario, listarUsuarios }) => {
                 <td>
                   <button
                     onClick={(e) => {
-                      deleteUsuario(usuario._id);
-                      listarUsuarios();
+                      deleteMarca(marca._id);
+                      listarMarca();
                     }}
                     type="button"
                     className="btn btn-danger"

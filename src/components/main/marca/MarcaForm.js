@@ -1,6 +1,6 @@
 import React from "react";
 
-export const UsuarioForm = ({ handledSubmit, handledOnChange }) => {
+export const MarcaForm = ({ handledSubmit, handledOnChange }) => {
   return (
     <div>
       <form
@@ -17,18 +17,6 @@ export const UsuarioForm = ({ handledSubmit, handledOnChange }) => {
               name="nombre"
               aria-describedby="nombre"
               placeholder="Nombre"
-              onChange={(e) => handledOnChange(e)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Email: </label>
-            <input
-              required
-              type="email"
-              className="form-control"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
               onChange={(e) => handledOnChange(e)}
             />
           </div>

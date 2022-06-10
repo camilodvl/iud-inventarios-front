@@ -1,5 +1,5 @@
 import { useEffect, useState, React } from "react";
-import { getInventarios } from "../../services/inventarioService";
+import { getInventarios } from "../../../services/inventarioService";
 
 export const Main = () => {
   const [inventarios, setInventarios] = useState([]);
@@ -22,7 +22,10 @@ export const Main = () => {
       <div className="row ">
         {inventarios.map((inventario) => {
           return (
-            <div key={inventario._id} className="col-xl-6 col-md-auto col-lg-auto col-md-auto">
+            <div
+              key={inventario._id}
+              className="col-xl-6 col-md-auto col-lg-auto col-md-auto"
+            >
               <div className="card mt-1 mb-1">
                 <img
                   className="Imagen"
@@ -34,9 +37,7 @@ export const Main = () => {
                   <p className="card-text">
                     Descripcion: {inventario.descripcion}
                   </p>
-                  <p className="card-text">
-                    Modelo: {inventario.modelo}
-                  </p>
+                  <p className="card-text">Modelo: {inventario.modelo}</p>
                 </div>
               </div>
             </div>

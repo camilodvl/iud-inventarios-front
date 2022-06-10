@@ -1,18 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getUsuarioId, updateUsuario } from "../../../services/usuarioService";
+import { getMarcaId, updateMarca } from "../../../services/marcaService";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-export const UsuarioUpdateForm = () => {
+export const MarcaUpdateForm = () => {
   const { id = "" } = useParams();
-  const [usuario, setUsuario] = useState({});
+  const [marca, setMarca] = useState({});
 
-  const { nombre = "", email = "", estado = "Activo" } = usuario;
+  const { nombre = "", estado = "Activo" } = marca;
 
-  const getUsuario = async () => {
-    const { data } = await getUsuarioId(id);
-    setUsuario(data);
+  const getMarca = async () => {
+    const { data } = await getMarcaId(id);
+    setMarca(data);
     try {
     } catch (error) {
       console.log(error);
@@ -20,28 +20,27 @@ export const UsuarioUpdateForm = () => {
   };
 
   useEffect(() => {
-    getUsuario();
+    getMarca();
   }, [id]);
 
   const handledOnChange = ({ target }) => {
     const { name, value } = target;
-    setUsuario({ ...usuario, [name]: value });
+    setMarca({ ...marca, [name]: value });
   };
 
   const submitFunction = (e) => {
     try {
       e.preventDefault();
-      const usuarioInsertar = {
-        id: usuario._id,
-        nombre: usuario.nombre,
-        email: usuario.email,
-        estado: usuario.estado,
+      const MarcaInsertar = {
+        id: marca._id,
+        nombre: marca.nombre,
+        marca: marca.estado,
       };
 
-      updateUsuario(usuarioInsertar);
+      updateMarca(MarcaInsertar);
       Swal.fire(
-        "Usuario actualizado",
-        ` Nombre: ${usuario.nombre} Correo: ${usuario.email}`,
+        "Marca actualizado",
+        ` Nombre: ${marca.nombre}`,
         "success"
       );
     } catch (error) {
@@ -65,18 +64,6 @@ export const UsuarioUpdateForm = () => {
               aria-describedby="nombre"
               placeholder="Nombre"
               value={nombre}
-              onChange={(e) => handledOnChange(e)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Email: </label>
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              value={email}
               onChange={(e) => handledOnChange(e)}
             />
           </div>

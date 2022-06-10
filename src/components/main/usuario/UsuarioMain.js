@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   deleteUsuario,
   getUsuarios,
@@ -7,23 +7,26 @@ import {
 } from "../../../services/usuarioService";
 import { UsuarioForm } from "./UsuarioForm";
 import { UsuarioList } from "./UsuarioList";
-import { UsuarioUpdateForm } from "./UsuarioUpdateForm";
 
 export const UsuarioMain = () => {
-  const [usuarios, setUsuarios] = useState([]);//Lista con la que luego se pintaran los usuarios obtenidos de la bd
-  const [usuario, setUsuario] = useState({});//objeto para enviar al metodo post
-  const [controlUsuario, setOpenModal]=useState(0);
+  const [usuarios, setUsuarios] = useState([]); //Lista con la que luego se pintaran los usuarios obtenidos de la bd
+  const [usuario, setUsuario] = useState({}); //objeto para enviar al metodo post
+  const [controlUsuario, setOpenModal] = useState(0); // se controla para actualizar la pagina
 
   const handledOnChange = (e) => {
     setUsuario({ ...usuario, [e.target.name]: e.target.value });
   };
 
-  const { nombre = "", email = "", estado = "Activo" } = usuario;
-
-  const handledSubmint = (e) => {
+  const handledSubmit = (e) => {
     e.preventDefault();
-    postUsuarios(usuario);
-    setOpenModal(controlUsuario+1);
+    try {
+      postUsuarios(usuario);
+      Swal.fire("Usuario agregado", ` Nombre: ${usuario.nombre} Correo:${usuario.email}`, "success")
+    } catch (error) {
+      console.log(error)
+    }
+    
+    setOpenModal(controlUsuario + 1);
   };
 
   const listarUsuarios = async () => {
@@ -35,17 +38,22 @@ export const UsuarioMain = () => {
     }
   };
 
-
   useEffect(() => {
     listarUsuarios();
   }, [controlUsuario]);
 
   return (
     <div className="container-fluid mt-3 mb-2">
-      <UsuarioForm handledSubmint={handledSubmint} handledOnChange={handledOnChange}/>
-      <UsuarioList usuarios={usuarios} deleteUsuario={deleteUsuario} listarUsuarios={listarUsuarios}/>
-      
+     <h2>Usuarios</h2>
+      <UsuarioForm
+        handledSubmit={handledSubmit}
+        handledOnChange={handledOnChange}
+      />
+      <UsuarioList
+        usuarios={usuarios}
+        deleteUsuario={deleteUsuario}
+        listarUsuarios={listarUsuarios}
+      />
     </div>
-  
   );
 };
