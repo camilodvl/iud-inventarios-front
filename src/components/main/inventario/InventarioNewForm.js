@@ -5,6 +5,7 @@ import { postInventario } from "../../../services/inventarioService";
 import { getMarca } from "../../../services/marcaService";
 import { getTipo } from "../../../services/tipoService";
 import { getUsuarios } from "../../../services/usuarioService";
+import Swal from "sweetalert2";
 
 export const InventarioNewForm = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -84,6 +85,7 @@ export const InventarioNewForm = () => {
         },
     }
     postInventario(inventarioGuardar)
+    Swal.fire("Inventario Creado", ` Exito`, "success")
   };
 
   const handledOnChange = ({ target }) => {

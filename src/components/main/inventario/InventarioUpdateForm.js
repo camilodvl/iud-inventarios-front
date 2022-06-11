@@ -6,6 +6,7 @@ import { getInventarioId, postInventario, updateInventario } from "../../../serv
 import { getMarca } from "../../../services/marcaService";
 import { getTipo } from "../../../services/tipoService";
 import { getUsuarios } from "../../../services/usuarioService";
+import Swal from "sweetalert2";
 
 export const InventarioUpdateForm = () => {
   const { id = "" } = useParams();
@@ -111,6 +112,7 @@ export const InventarioUpdateForm = () => {
     };
     
     updateInventario(inventarioGuardar);
+    Swal.fire("Inventario Actualizado", ` Exito`, "success")
   };
 
   const handledOnChange = ({ target }) => {

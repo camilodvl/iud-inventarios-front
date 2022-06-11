@@ -3,6 +3,7 @@ import { getInventarios } from "../../../services/inventarioService";
 import { NavLink } from "react-router-dom";
 import { deleteInventario } from "../../../services/inventarioService";
 
+
 export const Main = () => {
   const [inventarios, setInventarios] = useState([]);
 
